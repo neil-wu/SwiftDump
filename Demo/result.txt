@@ -1,0 +1,35 @@
+enum MyEnum {
+    // <0x52, enum, isUnique, version 0, kindSpecificFlags 0x0>
+    // Access Function at 0x21c0 
+    case red
+    case blue
+    case yellow
+}
+
+struct BaseStruct {
+    // <0x51, struct, isUnique, version 0, kindSpecificFlags 0x0>
+    // Access Function at 0x25a0 
+    let bbname: String;
+}
+
+struct MyStruct {
+    // <0x51, struct, isUnique, version 0, kindSpecificFlags 0x0>
+    // Access Function at 0x29b0 
+    let sid: Int;
+    let sname: String;
+}
+
+class BaseClass {
+    // <0x80000050, class, isUnique, version 0, kindSpecificFlags 0x8000>
+    // Access Function at 0x29c0 
+    let bcname: String;
+}
+
+class MyClass : BaseClass {
+    // <0x40000050, class, isUnique, version 0, kindSpecificFlags 0x4000>
+    // Access Function at 0x2a00 
+    let cid: Int;
+    let cname: String;
+    let st: MyStruct?;
+}
+

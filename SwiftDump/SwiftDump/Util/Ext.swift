@@ -152,6 +152,10 @@ extension Data {
             }
         }
         
+        if (result.count > 10000) {
+            return nil
+        }
+        
         let tmp = result.reduce("0x") { (result, val:UInt8) -> String in
             return result + String(format: "%02x", val);
         }

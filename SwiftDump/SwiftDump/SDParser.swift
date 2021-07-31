@@ -627,11 +627,19 @@ func dumpFieldDescriptor(loader: SDFileLoader, fieldDescriptorPtr: SDPointer, to
         let typeNamePtr = loader.readMove(fieldAddr.add(4)).fix();
         let typeName = loader.readStr(typeNamePtr);
         
+        if let type = typeName, (type.count <= 0 || type.count > 100) {
+            continue
+        }
+        
         let fieldNamePtr = loader.readMove(fieldAddr.add(8)).fix();
         let fieldName = loader.readStr(fieldNamePtr);
         
+        if let field = fieldName, (field.count <= 0 || field.count > 100) {
+            continue
+        }
         
         if let type = typeName, let field = fieldName {
+            
             let realType = getTypeFromMangledName(type);
             let fieldObj = SDNominalObjField();
             fieldObj.name = field; // name: field, type: realType

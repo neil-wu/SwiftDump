@@ -69,7 +69,13 @@ func getTypeFromMangledName(_ str: String) -> String {
     guard let ptr = str.toPointer() else {
         return str;
     }
-    guard let typeRet: Any.Type = _getTypeByMangledNameInContext(ptr, str.count, genericContext: nil, genericArguments: nil) else {
+    
+    var useCnt:Int = str.count
+    if (str.hasSuffix("_pG")) {
+        useCnt = useCnt - 3
+    }
+    
+    guard let typeRet: Any.Type = _getTypeByMangledNameInContext(ptr, useCnt, genericContext: nil, genericArguments: nil) else {
         return str;
     }
     

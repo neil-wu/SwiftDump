@@ -33,7 +33,7 @@ extension Data {
 	func extract<T>(_ type: T.Type, offset: Int = 0) -> T {
         let data = self[offset..<offset + MemoryLayout<T>.size];
         let ret = data.withUnsafeBytes { (ptr:UnsafeRawBufferPointer) -> T in
-            return ptr.load(as: T.self)
+            return ptr.loadUnaligned(as: T.self)
         }
         return ret;
 	}
